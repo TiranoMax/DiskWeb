@@ -107,9 +107,14 @@
     <Compile Include="Migrations\201809262233206_CreateTableProduto.Designer.cs">
       <DependentUpon>201809262233206_CreateTableProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809262236141_CreateTableUsuario.cs" />
+    <Compile Include="Migrations\201809262236141_CreateTableUsuario.Designer.cs">
+      <DependentUpon>201809262236141_CreateTableUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +134,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809262233206_CreateTableProduto.resx">
       <DependentUpon>201809262233206_CreateTableProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809262236141_CreateTableUsuario.resx">
+      <DependentUpon>201809262236141_CreateTableUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
