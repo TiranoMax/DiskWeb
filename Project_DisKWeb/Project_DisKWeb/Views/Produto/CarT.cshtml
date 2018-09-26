@@ -1,0 +1,60 @@
+﻿@using Project_DisKWeb.Models
+@model List<Compra>
+
+
+<h2>Carrinho de Compras</h2>
+<hr />
+
+
+<div class="container-fluid" style=" padding-top: 2%">
+    <div class="row">
+        <table class="table table-hover">
+            <tr>
+                <th>Imagem</th>
+                <th>Produto</th>
+                <th>Data Incial Aluguel</th>
+                <th>Escolha a data de Entrega</th>
+                <th>Preco de Aluguel</th>
+            </tr>
+            @foreach (Compra ExibIcao in Model)
+            {
+                <tr>
+                    <td><img src="~/Imagem/@ExibIcao.Produto.Img" alt="Imagem do Produto" style="width:100px; height:100px" /></td>
+
+                    <td>@ExibIcao.Produto.Nome</td>
+
+                    <td>
+                        @{
+                            int dia = ExibIcao.Data.Day;
+                            int mes = ExibIcao.Data.Month;
+                            int ano = ExibIcao.Data.Year;
+
+                            string data = dia + "/" + mes + "/ " + ano;
+
+                        }
+                        @data
+                    <td>
+                    <td>
+                        @{
+
+                            string entrega = DateTime.Today.AddDays(33) + "";
+
+                        }
+                        @Html.ActionLink("-", "Diminuir Data", "Exibicao", new { id = ExibIcao.CompraId }, new { @class = "btn btn-danger" })
+
+                        @entrega
+                        @Html.ActionLink("+", "Almentar Data", "Exibicao", new { id = ExibIcao.CompraId }, new { @class = "btn btn-success" })
+
+                        <p> @Html.ActionLink("Remover", "", "Exibicao", new { id = ExibIcao.CompraId }, new { @class = "text-danger" })</p>
+                    </td>
+
+
+                </tr>
+
+
+            }
+        </table>
+
+        @Html.ActionLink("Finalizar Compra", "FinishCompra", "Produto", new { @class = "btn btn-success" })
+    </div>
+</div>
