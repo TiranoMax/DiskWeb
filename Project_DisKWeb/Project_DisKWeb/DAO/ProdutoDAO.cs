@@ -1,5 +1,5 @@
-﻿using Ecommerce.Utils;
-using Project_DisKWeb.Models;
+﻿using Project_DisKWeb.Models;
+using Project_DisKWeb.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
