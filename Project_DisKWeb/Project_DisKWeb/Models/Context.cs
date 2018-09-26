@@ -9,5 +9,6 @@ namespace Project_DisKWeb.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Compra> Compras { get; set; }
     }
 }

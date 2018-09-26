@@ -115,7 +115,12 @@
     <Compile Include="Migrations\201809262240370_CreateTableEnderec.Designer.cs">
       <DependentUpon>201809262240370_CreateTableEnderec.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809262243077_CreateTableCompra.cs" />
+    <Compile Include="Migrations\201809262243077_CreateTableCompra.Designer.cs">
+      <DependentUpon>201809262243077_CreateTableCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Produto.cs" />
@@ -145,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809262240370_CreateTableEnderec.resx">
       <DependentUpon>201809262240370_CreateTableEnderec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809262243077_CreateTableCompra.resx">
+      <DependentUpon>201809262243077_CreateTableCompra.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
