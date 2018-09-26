@@ -107,6 +107,7 @@
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="DAO\ProdutoDAO.cs" />
     <Compile Include="DAO\Singleton.cs" />
+    <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
