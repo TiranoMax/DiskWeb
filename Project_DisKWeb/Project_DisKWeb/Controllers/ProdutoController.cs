@@ -7,9 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Ecommerce.Utils;
+
 using Project_DisKWeb.DAL;
 using Project_DisKWeb.Models;
+using Project_DisKWeb.Utils;
 
 namespace Project_DisKWeb.Controllers
 {
