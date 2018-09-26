@@ -178,6 +178,7 @@
     <Content Include="Views\Produto\CadProduto.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\material-dashboard.js.map" />
+    <Content Include="Views\Produto\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

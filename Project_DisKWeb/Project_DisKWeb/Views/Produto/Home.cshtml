@@ -1,0 +1,41 @@
+﻿@using Project_DisKWeb.Models
+@model List<Produto>
+
+
+<h2>Home</h2>
+<hr />
+
+
+<div class="container-fluid" style=" padding-top: 2%">
+    <div class="row">
+        @foreach (Produto ExibIcao in Model)
+        {
+
+
+            <div class="col-md-3 col-sm-3">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <img src="~/Imagem/@ExibIcao.Img" alt="Imagem do Produto" style="width:100px; height:100px;" />
+                        </div>
+                        <p class="card-title">
+                            <label>Produto:</label>
+                            @Html.ActionLink(ExibIcao.Nome.ToUpper(), "Detalhes", "Produto", new { id = ExibIcao.ProdutoId }, new { @class = "text-info" })
+                        </p>
+                        <h3 class="card-category">
+                            <label>Categoria:</label> @Html.Label(ExibIcao.Categoria, new { @class = "text-info" })
+                        </h3>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <label>Preço: </label>  @Html.Label(ExibIcao.Preco_Venda.ToString("C2"), new { @class = "text-info" })
+                        </div>
+                        <div>
+                            @Html.ActionLink("Adicionar", "AddToCart", "Produto", new { id = ExibIcao.ProdutoId }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
