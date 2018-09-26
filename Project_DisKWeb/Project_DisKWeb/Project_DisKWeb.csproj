@@ -182,6 +182,7 @@
     <Content Include="Views\Produto\Index.cshtml" />
     <Content Include="Views\Produto\CarT.cshtml" />
     <Content Include="Views\Produto\Detalhes.cshtml" />
+    <Content Include="Views\Produto\EditProduto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
