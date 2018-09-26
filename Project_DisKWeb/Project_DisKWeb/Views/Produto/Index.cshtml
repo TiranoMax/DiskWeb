@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Project_DisKWeb.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Produtos Cadastrados</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo produto", "CadProduto", "", new { @class = "text-info" })
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ano_Lancamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QTDE_Estoque)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco_Venda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QTDE_Estoque_aluguel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco_Aluguel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Img)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ano_Lancamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QTDE_Estoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco_Venda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QTDE_Estoque_aluguel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco_Aluguel)
+            </td>
+            <td>
+                <img src="~/Imagem/@item.Img" alt="Imagem do Produto" style="width:100px; height:100px" />
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditProduto", new { id = item.ProdutoId }, new { @class = "btn btn-warning " })
+                @Html.ActionLink("Deletar", "Delete", new { id = item.ProdutoId }, new { @class = "btn btn-danger " })
+            </td>
+        </tr>
+    }
+
+</table>
