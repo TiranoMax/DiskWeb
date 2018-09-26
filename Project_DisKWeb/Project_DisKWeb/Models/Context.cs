@@ -6,6 +6,6 @@ namespace Project_DisKWeb.Models
     {
         public Context() : base("DbDisKWeb") { }
 
-        
+        public DbSet<Produto> Produtos { get; set; }
     }
 }
