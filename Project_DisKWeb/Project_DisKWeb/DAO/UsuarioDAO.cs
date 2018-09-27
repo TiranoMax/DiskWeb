@@ -42,5 +42,11 @@ namespace Project_DisKWeb.DAL
         {
             return ctx.Usuarios.Find(id);
         }
+
+        public static Endereco BuscaEndereco(Usuario usuario)
+        {
+            return ctx.Enderecos.FirstOrDefault(x => x.Usuario.UsuarioId.Equals(usuario.UsuarioId));
+
+        }
     }
 }

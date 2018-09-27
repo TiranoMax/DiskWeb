@@ -160,6 +160,14 @@
     <Compile Include="Migrations\201809262245209_CreateTableFinalCompra.Designer.cs">
       <DependentUpon>201809262245209_CreateTableFinalCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809271848537_AlterTableFinalCompra.cs" />
+    <Compile Include="Migrations\201809271848537_AlterTableFinalCompra.Designer.cs">
+      <DependentUpon>201809271848537_AlterTableFinalCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271937540_AlterTableFinalCompra2.cs" />
+    <Compile Include="Migrations\201809271937540_AlterTableFinalCompra2.Designer.cs">
+      <DependentUpon>201809271937540_AlterTableFinalCompra2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\Context.cs" />
@@ -213,6 +221,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809262245209_CreateTableFinalCompra.resx">
       <DependentUpon>201809262245209_CreateTableFinalCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271848537_AlterTableFinalCompra.resx">
+      <DependentUpon>201809271848537_AlterTableFinalCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271937540_AlterTableFinalCompra2.resx">
+      <DependentUpon>201809271937540_AlterTableFinalCompra2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

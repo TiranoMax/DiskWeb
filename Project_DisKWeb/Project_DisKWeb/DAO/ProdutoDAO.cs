@@ -111,17 +111,36 @@ namespace Project_DisKWeb.DAL
                 ctx.SaveChanges();
             }
         }
-        #endregion
 
-        #region total CarT
-        public static double TotalCart()
+        public static Compra SearchCompraByID(int id)
         {
-            return SearchProdutosByCarTId().Sum(x => x.DataDevolucao.Day * x.Valor);
+            return ctx.Compras.Find(id);
         }
-        #endregion
+
+        public static void FinishCompra(FinalCompra finish)
+        {
+            ctx.FinalCompras.Add(finish);
+            ctx.SaveChanges();
+        }
+
+        public static double SomaTotalCart()
+        {
+            DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
+
+            TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
+
+            int totalDias = date.Days + 1;
+
+            double subTotal = item.Valor * totalDias;
 
 
-
-
+            return SearchProdutosByCarTId().Sum(x => x.Valor * totalDias);
+            
+            );
+        }
     }
+    }
+
+        #endregion
+    
 }
