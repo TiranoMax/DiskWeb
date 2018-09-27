@@ -91,6 +91,37 @@ namespace Project_DisKWeb.DAL
         }
         #endregion
 
+        #region Aumenta data entrega
+        public static void AumentarDataEntregaProdutoCart(int id)
+        {
+            Compra item = ctx.Compras.Find(id);
+
+            item.DataDevolucao = item.DataDevolucao.AddDays(1);
+            ctx.SaveChanges();
+        }
+        #endregion
+
+        #region Diminui data entrega
+        public static void DiminuirDataEntregaProdutoCart(int id)
+        {
+            Compra item = ctx.Compras.Find(id);
+            if (item.DataDevolucao >= DateTime.Now)
+            {
+                item.DataDevolucao = item.DataDevolucao.AddDays(-1);
+                ctx.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region total CarT
+        public static double TotalCart()
+        {
+            return SearchProdutosByCarTId().Sum(x => x.DataDevolucao.Day * x.Valor);
+        }
+        #endregion
+
+
+
 
     }
 }

@@ -172,27 +172,27 @@ namespace Project_DisKWeb.Controllers
             return RedirectToAction("CarT", "Produto");
         }
 
-        //public ActionResult AdicionarItem(int id)
-        //{
-        //    ProdutoDAO.AumentarDataEntregaProdutoCart(id);
-        //    return RedirectToAction("CarT", "Produto");
-        //}
+        public ActionResult AumentarData(int id)
+        {
+            ProdutoDAO.AumentarDataEntregaProdutoCart(id);
+            return RedirectToAction("CarT", "Produto");
+        }
 
-        //public ActionResult DiminuirItem(int id)
-        //{
-        //    ProdutoDAO.DiminuirDataEntregaProdutoCart(id);
-        //    return RedirectToAction("CarT", "Produto");
-        //}
+        public ActionResult DiminuirData(int id)
+        {
+            ProdutoDAO.DiminuirDataEntregaProdutoCart(id);
+            return RedirectToAction("CarT", "Produto");
+        }
 
 
-        //[Authorize(Roles = "Usuario")]
-        //public ActionResult FinalCompra()
-        //{
-        //    ViewBag.Total = ProdutoDAO.TotalCart();
-        //    ViewBag.itemnsCompra = ProdutoDAO.SearchProdutosByCarTId();
+        [Authorize(Roles = "Usuario")]
+        public ActionResult FinishCompra()
+        {
+            ViewBag.Total = ProdutoDAO.TotalCart();
+            ViewBag.itensCompra = ProdutoDAO.SearchProdutosByCarTId();
 
-        //    return View();
-        //}
+           return View();
+        }
 
     }
 }
