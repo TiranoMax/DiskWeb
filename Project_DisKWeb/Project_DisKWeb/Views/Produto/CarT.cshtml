@@ -21,7 +21,7 @@
             </tr>
             @foreach (Compra ExibIcao in Model)
             {
-                
+
 
                 <tr>
                     <td><img src="~/Imagem/@ExibIcao.Produto.Img" alt="Imagem do Produto" style="width:100px; height:100px" /></td>
@@ -29,7 +29,7 @@
                     <td>@ExibIcao.Produto.Nome</td>
 
                     <td>
-                        
+
                         @ExibIcao.Data.ToShortDateString()
                     </td>
                     <td>
@@ -49,11 +49,14 @@
                             int totalDias = date.Days + 1;
 
                             double subTotal = ExibIcao.Valor * totalDias;
+
+
                         }
 
                         @totalDias * @ExibIcao.Valor = @subTotal
+
                     </td>
-                    
+
 
                     <td>
                         <p> @Html.ActionLink("Remover do Carrinho", "RemovendoItem", "Produto", new { id = ExibIcao.CompraId }, new { @class = "text-danger" })</p>
@@ -62,9 +65,11 @@
 
                 </tr>
 
-
+                               
             }
         </table>
+
+        
 
         @Html.ActionLink("Finalizar Compra", "FinishCompra", "Produto", new { @class = "btn btn-success" })
     </div>

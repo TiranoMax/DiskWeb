@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-footer">
                         <div>
-                            <label>Preço: </label>  @Html.Label(ExibIcao.Preco_Venda.ToString("C2"), new { @class = "text-info" })
+                            <label>Preço: </label>  @Html.Label(ExibIcao.Preco_Aluguel.ToString("C2"), new { @class = "text-info" })
                         </div>
                         <div>
                             @Html.ActionLink("Adicionar", "AddToCart", "Produto", new { id = ExibIcao.ProdutoId }, new { @class = "btn btn-success" })

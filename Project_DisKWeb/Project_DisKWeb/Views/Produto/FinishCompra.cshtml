@@ -1,7 +1,47 @@
-﻿
+﻿@using Project_DisKWeb.Models
+
 @{
-    ViewBag.Title = "FinishCompra";
+    List<Project_DisKWeb.Models.Compra> itens = ViewBag.Itens;
 }
 
-<h2>FinishCompra</h2>
 
+
+
+<label> @Session["UsuarioId"]</label>
+
+<div>
+    <h3>Resumo da Compra</h3>
+    <div style="box-sizing:border-box;-moz-box-sizing: border-box;">
+        <div style="width:50%;margin-right:10px">
+            @foreach (Compra item in itens)
+            {
+                <p><b>@item.Produto.Nome</b></p>
+                <p>@item.DataDevolucao.ToShortDateString()</p>
+                <hr class="my-4" />
+
+                <b>
+                    Subtotal:
+                    @{
+                        DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
+
+                        TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
+
+                        int totalDias = date.Days + 1;
+
+                        double subTotal = item.Valor * totalDias;
+
+
+                    }
+                    @subTotal.ToString("C2");
+                </b>
+                <hr class="my-4" style="margin-bottom:10px" />
+            }
+
+        </div>
+    </div>
+
+
+    <div>
+        @Html.ActionLink("Finalizar Compra", "FinalizarCompra", "Produto", new { idUser = Session["UsuarioId"] }, new { @class = "btn btn-success" })
+    </div>
+</div>
