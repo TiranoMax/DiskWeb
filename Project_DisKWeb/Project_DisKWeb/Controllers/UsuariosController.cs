@@ -35,6 +35,8 @@ namespace Project_DisKWeb.Controllers
                 FormsAuthentication.SetAuthCookie(usuario.Email, false);
                 Session["NivelAdmin"] = usuario.NivelAdmin;
                 Session["Nome"] = usuario.Nome;
+                Session["UsuarioId"] = usuario.UsuarioId;
+                
                 return RedirectToAction("Home", "Produto");
             }
             ModelState.AddModelError("", "O e-mail ou senha não coincidem!");

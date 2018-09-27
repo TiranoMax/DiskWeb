@@ -188,10 +188,27 @@ namespace Project_DisKWeb.Controllers
         [Authorize(Roles = "Usuario")]
         public ActionResult FinishCompra()
         {
-            ViewBag.Total = ProdutoDAO.TotalCart();
-            ViewBag.itensCompra = ProdutoDAO.SearchProdutosByCarTId();
-
+            
+            ViewBag.Itens = ProdutoDAO.SearchProdutosByCarTId();
            return View();
+        }
+
+        public ActionResult FinalizarCompra( int idUser)
+        {
+            List<Compra> compra = ProdutoDAO.SearchProdutosByCarTId();
+            Usuario usuario = UsuarioDAO.BuscarUsuario(idUser);
+
+            Endereco endereco = UsuarioDAO.BuscaEndereco(usuario);
+
+            FinalCompra finish = new FinalCompra
+            {
+                Usuario = usuario,
+                Compras = compra,
+                Endereco = endereco
+            };
+            ProdutoDAO.FinishCompra(finish);
+            Sessao.NewSessao();
+            return RedirectToAction("Home", "produto");
         }
 
     }
