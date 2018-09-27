@@ -46,7 +46,7 @@ namespace Project_DisKWeb.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Home", "Produto");
+            return RedirectToAction("Home", "Produto"); 
         }
         #endregion
 
