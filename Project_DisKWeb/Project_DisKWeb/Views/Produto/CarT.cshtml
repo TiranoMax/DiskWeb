@@ -2,6 +2,8 @@
 @model List<Compra>
 
 
+
+
 <h2>Carrinho de Compras</h2>
 <hr />
 
@@ -14,38 +16,47 @@
                 <th>Produto</th>
                 <th>Data Incial Aluguel</th>
                 <th>Escolha a data de Entrega</th>
-                <th>Preco de Aluguel</th>
+                <th>Preço total</th>
+                
             </tr>
             @foreach (Compra ExibIcao in Model)
             {
+                
+
                 <tr>
                     <td><img src="~/Imagem/@ExibIcao.Produto.Img" alt="Imagem do Produto" style="width:100px; height:100px" /></td>
 
                     <td>@ExibIcao.Produto.Nome</td>
 
                     <td>
-                        @{
-                            int dia = ExibIcao.Data.Day;
-                            int mes = ExibIcao.Data.Month;
-                            int ano = ExibIcao.Data.Year;
-
-                            string data = dia + "/" + mes + "/ " + ano;
-
-                        }
-                        @data
+                        
+                        @ExibIcao.Data.ToShortDateString()
+                    </td>
                     <td>
+                        @Html.ActionLink("-", "DiminuirData", "Produto", new { id = ExibIcao.CompraId }, new { @class = "btn btn-danger" })
+
+                        @ExibIcao.DataDevolucao.ToShortDateString()
+                        @Html.ActionLink("+", "AumentarData", "Produto", new { id = ExibIcao.CompraId }, new { @class = "btn btn-success" })
+
+
+                    </td>
                     <td>
                         @{
+                            DateTime dataInicial = ExibIcao.Data; DateTime datafinal = ExibIcao.DataDevolucao;
 
-                            string entrega = DateTime.Today.AddDays(33) + "";
+                            TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
 
+                            int totalDias = date.Days + 1;
+
+                            double subTotal = ExibIcao.Valor * totalDias;
                         }
-                        @Html.ActionLink("-", "Diminuir Data", "Exibicao", new { id = ExibIcao.CompraId }, new { @class = "btn btn-danger" })
 
-                        @entrega
-                        @Html.ActionLink("+", "Almentar Data", "Exibicao", new { id = ExibIcao.CompraId }, new { @class = "btn btn-success" })
+                        @totalDias * @ExibIcao.Valor = @subTotal
+                    </td>
+                    
 
-                        <p> @Html.ActionLink("Remover", "", "Exibicao", new { id = ExibIcao.CompraId }, new { @class = "text-danger" })</p>
+                    <td>
+                        <p> @Html.ActionLink("Remover do Carrinho", "RemovendoItem", "Produto", new { id = ExibIcao.CompraId }, new { @class = "text-danger" })</p>
                     </td>
 
 
