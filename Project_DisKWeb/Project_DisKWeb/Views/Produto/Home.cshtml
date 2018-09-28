@@ -30,9 +30,20 @@
                         <div>
                             <label>Preço: </label>  @Html.Label(ExibIcao.Preco_Aluguel.ToString("C2"), new { @class = "text-info" })
                         </div>
-                        <div>
-                            @Html.ActionLink("Adicionar", "AddToCart", "Produto", new { id = ExibIcao.ProdutoId }, new { @class = "btn btn-success" })
-                        </div>
+                        @if (ExibIcao.QTDE_Estoque_aluguel > 0)
+                        {
+                            <div>
+                                @Html.ActionLink("Adicionar ao carrinho", "AddToCart", "Produto", new { id = ExibIcao.ProdutoId }, new { @class = "btn btn-success" })
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                @Html.ActionLink("Produto Indisponivel", "", "", new { @class = "btn btn-success col-md-12" })
+                            </div>
+                        }
+
+
                     </div>
                 </div>
             </div>

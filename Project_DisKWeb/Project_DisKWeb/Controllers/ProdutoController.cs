@@ -141,8 +141,7 @@ namespace Project_DisKWeb.Controllers
         public ActionResult AddToCart(int id)
         {
             Produto Produto = ProdutoDAO.SearchProdutoByID(id);
-
-
+            
             Compra compra = new Compra
             {
                 Produto = Produto,
@@ -153,6 +152,13 @@ namespace Project_DisKWeb.Controllers
                 Multa = 0,
                 CarTId = Sessao.ReturnCarT()
             };
+
+            if (Produto.QTDE_Estoque_aluguel > 0)
+            {
+                Produto.QTDE_Estoque_aluguel = Produto.QTDE_Estoque_aluguel - 1;
+
+                ProdutoDAO.AlterProduto(Produto);
+            }
             ProdutoDAO.AddToCart(compra);
 
             return RedirectToAction("CarT");
@@ -166,8 +172,15 @@ namespace Project_DisKWeb.Controllers
         }
         #endregion
 
-        public ActionResult RemovendoItem(int id)
+        public ActionResult RemovendoItem(int id, int IdProduto)
         {
+            Produto Produto = ProdutoDAO.SearchProdutoByID(IdProduto);
+            if (Produto.QTDE_Estoque_aluguel >= 0)
+            {
+                Produto.QTDE_Estoque_aluguel = Produto.QTDE_Estoque_aluguel + 1;
+
+                ProdutoDAO.AlterProduto(Produto);
+            }
             ProdutoDAO.RemoveToCart(id);
             return RedirectToAction("CarT", "Produto");
         }
@@ -197,7 +210,6 @@ namespace Project_DisKWeb.Controllers
         {
             List<Compra> compra = ProdutoDAO.SearchProdutosByCarTId();
             Usuario usuario = UsuarioDAO.BuscarUsuario(idUser);
-
             Endereco endereco = UsuarioDAO.BuscaEndereco(usuario);
 
             FinalCompra finish = new FinalCompra

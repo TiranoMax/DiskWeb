@@ -32,7 +32,8 @@
 
                         @ExibIcao.Data.ToShortDateString()
                     </td>
-                    <td>
+                    <td>         
+
                         @Html.ActionLink("-", "DiminuirData", "Produto", new { id = ExibIcao.CompraId }, new { @class = "btn btn-danger" })
 
                         @ExibIcao.DataDevolucao.ToShortDateString()
@@ -59,7 +60,7 @@
 
 
                     <td>
-                        <p> @Html.ActionLink("Remover do Carrinho", "RemovendoItem", "Produto", new { id = ExibIcao.CompraId }, new { @class = "text-danger" })</p>
+                        <p> @Html.ActionLink("Remover do Carrinho", "RemovendoItem", "Produto", new { id = ExibIcao.CompraId, IdProduto = ExibIcao.Produto.ProdutoId }, new { @class = "text-danger" })</p>
                     </td>
 
 

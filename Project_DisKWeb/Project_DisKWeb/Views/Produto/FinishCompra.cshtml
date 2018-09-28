@@ -3,11 +3,7 @@
 @{
     List<Project_DisKWeb.Models.Compra> itens = ViewBag.Itens;
 }
-
-
-
-
-<label> @Session["UsuarioId"]</label>
+ 
 
 <div>
     <h3>Resumo da Compra</h3>
@@ -30,6 +26,7 @@
 
                         double subTotal = item.Valor * totalDias;
 
+                        double Tot = subTotal;
 
                     }
                     @subTotal.ToString("C2");
@@ -38,6 +35,7 @@
             }
 
         </div>
+        
     </div>
 
 

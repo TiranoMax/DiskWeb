@@ -24,9 +24,20 @@
                 <p>
                     <h6 class="card-subtitle mb-2 text-muted">Autor: @Detalhe.Autor</h6>
                     <div class=" row " style="float:right; margin-top:-30px; padding-right:5%">
-                        <div>
-                            @Html.ActionLink("Alugar: " + @Detalhe.Preco_Aluguel.ToString("C2"), "AddToCart", "Produto", new { id = Detalhe.ProdutoId }, new { @class = "btn btn-success col-md-12" })
-                        </div>
+                        @if (Detalhe.QTDE_Estoque_aluguel > 0)
+                        {
+                            <div>
+                                @Html.ActionLink("Alugar: " + @Detalhe.Preco_Aluguel.ToString("C2"), "AddToCart", "Produto", new { id = Detalhe.ProdutoId }, new { @class = "btn btn-success col-md-12" })
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                @Html.ActionLink("Produto Indisponivel", "","", new { @class = "btn btn-success col-md-12" })
+                            </div>
+                        }
+
+
 
                     </div>
                 </p>

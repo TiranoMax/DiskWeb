@@ -85,7 +85,7 @@ namespace Project_DisKWeb.DAL
         public static void RemoveToCart(int id)
         {
             Compra item = ctx.Compras.Find(id);
-
+            
             ctx.Compras.Remove(item);
             ctx.SaveChanges();
         }
