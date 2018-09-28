@@ -56,11 +56,15 @@
                             else
                             {
                                 <li class="nav-item active ">
-                                    @Html.ActionLink("Alterar Dados", "AlterUser", "Usuarios", null, new { @class = " nav-link" })
+                                    @Html.ActionLink("Alterar Dados", "EditUser", "Usuarios", new { id = Session["UsuarioId"] }, new { @class = " nav-link" })
                                 </li>
                                 <li class="nav-item active ">
-                                    @Html.ActionLink("Meus Pedidos", "MyPedidos", "Produto", null, new { @class = " nav-link" })
+                                    @Html.ActionLink("Alterar Dados Endereço", "EditEndereco", "Usuarios", new { id = Session["UsuarioId"] }, new { @class = " nav-link" })
                                 </li>
+                                <li class="nav-item active ">
+                                    @Html.ActionLink("Excluir Usuario", "ExcluirUsuario", "Usuarios", new { id = Session["UsuarioId"] }, new { @class = " nav-link" })
+                                </li>
+
                             }
 
                         }

@@ -1,6 +1,7 @@
 ﻿using Project_DisKWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
@@ -38,6 +39,16 @@ namespace Project_DisKWeb.DAL
 
         }
 
+        public static void EditUser(Usuario usuario)
+        {
+            
+            if(BuscarUsuario(usuario.UsuarioId) != null) {
+                ctx.Entry(usuario).State = EntityState.Modified;
+                ctx.SaveChanges();
+            }
+
+        }
+
         public static Usuario BuscarUsuario(int? id)
         {
             return ctx.Usuarios.Find(id);
@@ -59,6 +70,27 @@ namespace Project_DisKWeb.DAL
         public static List<Endereco> ListaEndereco()
         {
             return ctx.Enderecos.Include("Usuario").ToList();
+        }
+
+        public static void EditEndereco(Endereco enderecoOri)
+       {
+            if (BuscaEndereco(enderecoOri.Usuario) != null)
+           {
+                ctx.Entry(enderecoOri).State = EntityState.Modified;
+                ctx.SaveChanges();
+           }
+        }
+
+        public static void RemoveEndereco(Endereco endereco)
+        {
+            ctx.Enderecos.Remove(endereco);
+            ctx.SaveChanges();
+        }
+
+        public static void RemoveUsuario(Usuario usuario)
+        {
+            ctx.Usuarios.Remove(usuario);
+            ctx.SaveChanges();
         }
     }
 }

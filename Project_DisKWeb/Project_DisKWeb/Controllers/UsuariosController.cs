@@ -84,6 +84,84 @@ namespace Project_DisKWeb.Controllers
         }
         #endregion
 
+        public ActionResult EditUser(int id)
+        {
+            return View(UsuarioDAO.BuscarUsuario(id));
+        }
+
+        
+        [HttpPost]
+        public ActionResult EditUser(Usuario UsuarioAlterado)
+        {
+
+            Usuario usuarioOri = UsuarioDAO.BuscarUsuario(UsuarioAlterado.UsuarioId);
+
+            usuarioOri.Nome = UsuarioAlterado.Nome;
+            usuarioOri.Email = UsuarioAlterado.Email;
+            usuarioOri.Cpf = UsuarioAlterado.Cpf;
+            usuarioOri.Telefone = UsuarioAlterado.Telefone;
+            usuarioOri.ConfirmeSenha = UsuarioAlterado.ConfirmeSenha;
+            usuarioOri.Senha = UsuarioAlterado.Senha;
+            usuarioOri.Nascimento = UsuarioAlterado.Nascimento;
+
+
+            if (ModelState.IsValid)
+            {
+                UsuarioDAO.EditUser(usuarioOri);
+                return RedirectToAction("Home", "Produto");
+
+            }
+
+            return View(UsuarioAlterado);
+        }
+
+        public ActionResult EditEndereco(int id)
+        {
+            Usuario usuario = UsuarioDAO.BuscarUsuario(id);
+            Endereco endereco = UsuarioDAO.BuscaEndereco(usuario);
+            return View(endereco);
+        }
+
+
+        [HttpPost]
+       public ActionResult EditEndereco(Endereco EnderecoAlterado)
+        {
+
+           Endereco enderecoOri = UsuarioDAO.BuscaEndereco(EnderecoAlterado.Usuario);
+
+            enderecoOri.Bairro = EnderecoAlterado.Bairro;
+            enderecoOri.CEP = EnderecoAlterado.CEP;
+            enderecoOri.Cidade = EnderecoAlterado.Cidade;
+            enderecoOri.Complemento = EnderecoAlterado.Complemento;
+            enderecoOri.Logradouro = EnderecoAlterado.Logradouro;
+            enderecoOri.Estado = EnderecoAlterado.Estado;
+            enderecoOri.Numero = EnderecoAlterado.Numero;
+
+
+            if (enderecoOri.Bairro != null || enderecoOri.CEP != null || enderecoOri.Cidade != null
+            || enderecoOri.Complemento != null || enderecoOri.Logradouro != null || enderecoOri.Estado != null)
+            {
+                UsuarioDAO.EditEndereco(enderecoOri);
+                return RedirectToAction("Home", "Produto");
+
+            }
+
+            return View(EnderecoAlterado);
+        }
+
+        public ActionResult ExcluirUsuario(int id)
+        {
+            Usuario usuario = UsuarioDAO.BuscarUsuario(id);
+            Endereco endereco = UsuarioDAO.BuscaEndereco(usuario);
+
+            UsuarioDAO.RemoveEndereco(endereco);
+            UsuarioDAO.RemoveUsuario(usuario);
+            
+
+            return Logout();
+        }
+
+
         #region pagina cadastro de endereco usuario
         public ActionResult CadEndereco()
         {
