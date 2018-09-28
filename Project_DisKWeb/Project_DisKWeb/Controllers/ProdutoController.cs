@@ -232,6 +232,13 @@ namespace Project_DisKWeb.Controllers
         {
             return View();
         }
+        [Authorize (Roles = "Admin")]
+        public ActionResult Encomendas()
+        {
+            ViewBag.Encomenda = ProdutoDAO.ListFinalCompras();
+            ViewBag.ListCompra = ProdutoDAO.ListCompras();
+            return View();
+        }
 
     }
 }

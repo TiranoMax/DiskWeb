@@ -153,6 +153,8 @@ namespace Project_DisKWeb.DAL
                 return SearchProdutosByCarTId().Sum(x => x.Qtde * x.Valor);
             
         }
+
+       
     }
 }
 

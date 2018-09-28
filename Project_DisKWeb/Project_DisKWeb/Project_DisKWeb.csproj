@@ -209,6 +209,7 @@
     <Content Include="Views\Usuarios\Login.cshtml" />
     <Content Include="Views\Produto\FinishCompra.cshtml" />
     <Content Include="Views\Produto\ApiS.cshtml" />
+    <Content Include="Views\Produto\Encomendas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
