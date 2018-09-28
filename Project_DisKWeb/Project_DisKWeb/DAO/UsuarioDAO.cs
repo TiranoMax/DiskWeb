@@ -48,5 +48,17 @@ namespace Project_DisKWeb.DAL
             return ctx.Enderecos.FirstOrDefault(x => x.Usuario.UsuarioId.Equals(usuario.UsuarioId));
 
         }
+
+
+        //parte da api
+        public static List<Usuario> ListaUsuario()
+        {
+            return ctx.Usuarios.ToList();
+        }
+
+        public static List<Endereco> ListaEndereco()
+        {
+            return ctx.Enderecos.Include("Usuario").ToList();
+        }
     }
 }

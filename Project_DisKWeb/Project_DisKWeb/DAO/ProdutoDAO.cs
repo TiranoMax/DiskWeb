@@ -111,6 +111,7 @@ namespace Project_DisKWeb.DAL
                 ctx.SaveChanges();
             }
         }
+        #endregion
 
         public static Compra SearchCompraByID(int id)
         {
@@ -123,24 +124,30 @@ namespace Project_DisKWeb.DAL
             ctx.SaveChanges();
         }
 
-        public static double SomaTotalCart()
+        public static List<Compra> ListCompras()
         {
-            DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
-
-            TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
-
-            int totalDias = date.Days + 1;
-
-            double subTotal = item.Valor * totalDias;
-
-
-            return SearchProdutosByCarTId().Sum(x => x.Valor * totalDias);
-            
-            );
+            return ctx.Compras.Include("Produto").ToList();
         }
-    }
-    }
 
-        #endregion
-    
+        public static List<FinalCompra> ListFinalCompras()
+        {
+            return ctx.FinalCompras.Include("Usuario").Include("Endereco").Include("Compras").ToList();
+        }
+        //public static double SomaTotalCart()
+        //{
+        //    DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
+
+        //    TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
+
+        //    int totalDias = date.Days + 1;
+
+        //    double subTotal = item.Valor * totalDias;
+
+
+        //    return SearchProdutosByCarTId().Sum(x => x.Valor * totalDias);
+            
+        //    );
+        //}
+    }
 }
+

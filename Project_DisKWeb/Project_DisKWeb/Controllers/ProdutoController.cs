@@ -211,5 +211,10 @@ namespace Project_DisKWeb.Controllers
             return RedirectToAction("Home", "produto");
         }
 
+        public ActionResult ApiS()
+        {
+            return View();
+        }
+
     }
 }
