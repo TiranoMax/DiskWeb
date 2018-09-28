@@ -16,8 +16,8 @@
                 <th>Produto</th>
                 <th>Data Incial Aluguel</th>
                 <th>Escolha a data de Entrega</th>
-                <th>Preço total</th>
-                
+                <th>SubTotal</th>
+
             </tr>
             @foreach (Compra ExibIcao in Model)
             {
@@ -32,7 +32,7 @@
 
                         @ExibIcao.Data.ToShortDateString()
                     </td>
-                    <td>         
+                    <td>
 
                         @Html.ActionLink("-", "DiminuirData", "Produto", new { id = ExibIcao.CompraId }, new { @class = "btn btn-danger" })
 
@@ -42,20 +42,7 @@
 
                     </td>
                     <td>
-                        @{
-                            DateTime dataInicial = ExibIcao.Data; DateTime datafinal = ExibIcao.DataDevolucao;
-
-                            TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
-
-                            int totalDias = date.Days + 1;
-
-                            double subTotal = ExibIcao.Valor * totalDias;
-
-
-                        }
-
-                        @totalDias * @ExibIcao.Valor = @subTotal
-
+                        @ExibIcao.Valor
                     </td>
 
 
@@ -66,12 +53,21 @@
 
                 </tr>
 
-                               
+
             }
         </table>
 
-        
+        @if (Session["UsuarioId"] == null)
+        {
 
-        @Html.ActionLink("Finalizar Compra", "FinishCompra", "Produto", new { @class = "btn btn-success" })
+            @Html.ActionLink("Finalizar Compra", "FinishCompra", "Produto", new { id = "" }, new { @class = "btn btn-success" })
+
+        }
+        else
+        {
+            @Html.ActionLink("Finalizar Compra", "FinishCompra", "Produto", new { id = Session["UsuarioId"] }, new { @class = "btn btn-success" })
+        }
+
+        
     </div>
 </div>

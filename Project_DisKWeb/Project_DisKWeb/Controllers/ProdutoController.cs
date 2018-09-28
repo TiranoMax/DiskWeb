@@ -141,7 +141,6 @@ namespace Project_DisKWeb.Controllers
         public ActionResult AddToCart(int id)
         {
             Produto Produto = ProdutoDAO.SearchProdutoByID(id);
-            
             Compra compra = new Compra
             {
                 Produto = Produto,
@@ -199,11 +198,17 @@ namespace Project_DisKWeb.Controllers
 
 
         [Authorize(Roles = "Usuario")]
-        public ActionResult FinishCompra()
+        public ActionResult FinishCompra(int? id)
         {
-            
+            if(id != null)
+            {
+                Usuario usuario = UsuarioDAO.BuscarUsuario(id);
+                Endereco endereco = UsuarioDAO.BuscaEndereco(usuario);
+                ViewBag.endereco = endereco;
+            }
             ViewBag.Itens = ProdutoDAO.SearchProdutosByCarTId();
-           return View();
+            ViewBag.Total = ProdutoDAO.SomaTotalCart();
+            return View();
         }
 
         public ActionResult FinalizarCompra( int idUser)

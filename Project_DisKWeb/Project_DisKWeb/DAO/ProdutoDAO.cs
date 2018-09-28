@@ -85,7 +85,7 @@ namespace Project_DisKWeb.DAL
         public static void RemoveToCart(int id)
         {
             Compra item = ctx.Compras.Find(id);
-            
+  
             ctx.Compras.Remove(item);
             ctx.SaveChanges();
         }
@@ -95,8 +95,14 @@ namespace Project_DisKWeb.DAL
         public static void AumentarDataEntregaProdutoCart(int id)
         {
             Compra item = ctx.Compras.Find(id);
-
             item.DataDevolucao = item.DataDevolucao.AddDays(1);
+            ctx.SaveChanges();
+
+            DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
+            TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
+            int totalDias = date.Days + 1;
+            double subTotal = item.Produto.Preco_Aluguel * totalDias;
+            item.Valor = subTotal;
             ctx.SaveChanges();
         }
         #endregion
@@ -108,6 +114,14 @@ namespace Project_DisKWeb.DAL
             if (item.DataDevolucao >= DateTime.Now)
             {
                 item.DataDevolucao = item.DataDevolucao.AddDays(-1);
+                ctx.SaveChanges();
+
+                DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
+                TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
+                int totalDias = date.Days + 1;
+                double subTotal = item.Produto.Preco_Aluguel * totalDias;
+
+                item.Valor = subTotal;
                 ctx.SaveChanges();
             }
         }
@@ -133,21 +147,12 @@ namespace Project_DisKWeb.DAL
         {
             return ctx.FinalCompras.Include("Usuario").Include("Endereco").Include("Compras").ToList();
         }
-        //public static double SomaTotalCart()
-        //{
-        //    DateTime dataInicial = item.Data; DateTime datafinal = item.DataDevolucao;
+        public static double SomaTotalCart() {
 
-        //    TimeSpan date = Convert.ToDateTime(datafinal) - Convert.ToDateTime(dataInicial);
-
-        //    int totalDias = date.Days + 1;
-
-        //    double subTotal = item.Valor * totalDias;
-
-
-        //    return SearchProdutosByCarTId().Sum(x => x.Valor * totalDias);
             
-        //    );
-        //}
+                return SearchProdutosByCarTId().Sum(x => x.Qtde * x.Valor);
+            
+        }
     }
 }
 
